@@ -1,5 +1,6 @@
 package fr.eni.arche.ui;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import fr.eni.arche.data.enumerations.Espece;
@@ -16,6 +17,7 @@ import fr.eni.arche.data.objects.Lapin;
  * Cette classe gère l'interaction avec l'utilisateur
  */
 public class Interaction {
+	public static final String SAISIE_INVALIDE = "Format de saisie invalide, l'annimal ne sera pas ajouté à l'arche";
 	private static Scanner scan = new Scanner(System.in);
 	/**
 	 * Cette méthode récupère les informations saisie par l'utilisateur
@@ -29,32 +31,43 @@ public class Interaction {
 		// Je déclare les menus espèce et sexe
 		Espece[] especes = Espece.values();
 		Sexe[] sexes = Sexe.values();
-		System.out.println("Quel est le sexe ?");
-		afficheMenu(sexes);
-		short sexe = scan.nextShort();
-		System.out.println("quelle est l'espèce ?");
-		afficheMenu(especes);
-		short espece = scan.nextShort();
-		switch (espece) {
-		case 0:
-			annimal = new Chat(sexes[sexe], nom);
-			break;
-			case 1:
-				annimal = new Chien(sexes[sexe], nom);
+
+		try {
+			System.out.println("Quel est le sexe ?");
+			afficheMenu(sexes);
+			short sexe = scan.nextShort();
+			System.out.println("quelle est l'espèce ?");
+			afficheMenu(especes);
+			short espece = scan.nextShort();
+			switch (espece) {
+			case 0:
+				annimal = new Chat(sexes[sexe], nom);
 				break;
-				case 2:
-					annimal = new Gorille(sexes[sexe], nom);
+				case 1:
+					annimal = new Chien(sexes[sexe], nom);
 					break;
-				case 3:
-					annimal = new Lapin(sexes[sexe], nom);
+					case 2:
+						annimal = new Gorille(sexes[sexe], nom);
+						break;
+					case 3:
+						annimal = new Lapin(sexes[sexe], nom);
 
-		default:
-			// à voir si la saisie est mauvaise
-			break;
+			default:
+				System.out.println(SAISIE_INVALIDE + " (espèce).");
+				// à voir si la saisie est mauvaise
+				break;
+			}
+		} catch (InputMismatchException e) {
+			// TODO: handle exception
+			System.out.println(SAISIE_INVALIDE + " (sexe)");
 		}
-		scan.nextLine();
-
-
+		catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println(SAISIE_INVALIDE);
+			// TODO: handle exception
+		}
+		finally {
+			scan.nextLine();
+		}
 		return annimal;
 	}
 	/**

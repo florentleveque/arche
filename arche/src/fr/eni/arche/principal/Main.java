@@ -12,8 +12,10 @@ public class Main {
 		Arche arche = null;
 		while (continuer) {
 			Annimal annimal = Interaction.creationAnnimal();
-			arche = new Arche();
-			arche.ajoutAnnimal(annimal);
+			if (annimal != null) {
+				arche = new Arche();
+				arche.ajoutAnnimal(annimal);
+			}
 			continuer = Interaction.relanceSaisie();
 		}
 		Interaction.afficheContenuArche(arche);
