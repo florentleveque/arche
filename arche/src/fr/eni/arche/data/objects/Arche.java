@@ -1,5 +1,8 @@
 package fr.eni.arche.data.objects;
 
+import fr.eni.arche.data.interfaces.Carnivor;
+import fr.eni.arche.data.interfaces.Vegetarien;
+
 /**
  * @author florent
  * Cette classe représente l'arche
@@ -15,18 +18,10 @@ package fr.eni.arche.data.objects;
  */
 public class Arche {
 	private Annimal[] annimaux;
-	public static int nbLapin;
-	public static int nbGorille;
-	public static int nbChat;
-	public static int nbChien;
 
 	public Arche() {
 		super();
 		annimaux = new Annimal[8];
-		nbChat = 0;
-		nbChien = 0;
-		nbLapin = 0;
-		nbGorille = 0;
 	}
 	public Annimal[] getAnnimaux() {
 		return annimaux;
@@ -44,6 +39,21 @@ public class Arche {
 				break;
 			}
 		}
+	}
+	public int[] trieAnnimaux() {
+		// je parcours le tableaux d'annimaux, et je nomme dans le tableau le nombre de carnivors et de végétariens
+		int[] trie = new int[2];
+		
+		// l'index 0 contiendra le nombre de végétarien, et l'index 1 comprendra le nombre de carnivors.
+		for (Annimal a : annimaux) {
+			if (a instanceof Vegetarien) {
+				trie[0]++;
+			}
+			else if (a instanceof Carnivor) {
+				trie[1]++;
+			}
+		}
+		return trie;
 	}
 
 }

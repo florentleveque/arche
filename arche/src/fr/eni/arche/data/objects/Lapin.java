@@ -1,9 +1,11 @@
 package fr.eni.arche.data.objects;
 
-import fr.eni.arche.data.enumerations.Sexe;
-import fr.eni.arche.data.interfaces.CalculInstance;
+import java.util.Calendar;
 
-public class Lapin extends Annimal {
+import fr.eni.arche.data.enumerations.Sexe;
+import fr.eni.arche.data.interfaces.Vegetarien;
+
+public class Lapin extends Annimal implements Vegetarien {
 	private static int nombreInstance;
 
 
@@ -12,8 +14,10 @@ public class Lapin extends Annimal {
 		// TODO Auto-generated constructor stub
 		nombreInstance++;
 	}
+
 	public static int getNombreInstance() {
 		return nombreInstance;
 	}
+
 
 }

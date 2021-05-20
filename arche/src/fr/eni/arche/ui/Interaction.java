@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 import fr.eni.arche.data.enumerations.Espece;
 import fr.eni.arche.data.enumerations.Sexe;
+import fr.eni.arche.data.interfaces.Carnivor;
+import fr.eni.arche.data.interfaces.Vegetarien;
 import fr.eni.arche.data.objects.Annimal;
 import fr.eni.arche.data.objects.Arche;
 import fr.eni.arche.data.objects.Chat;
@@ -94,6 +96,18 @@ public class Interaction {
 			relance = true;
 		}
 		return relance;
+	}
+	/**
+	 * Cette méthode est chargé d'afficher dans la console ce que doit préparer le commis pour effectuer le voyage
+	 */
+	public static void affichePreparation(Arche arche) {
+		int traverse = 10;
+		int[] tri = arche.trieAnnimaux();
+		int vegetariens = tri[0];
+		int carnivors = tri[1];
+		int vegetaux = vegetariens * Vegetarien.NOMBRE_DE_VEGETAUX_PAR_JOUR * traverse;
+		int viande = tri[1] * Carnivor.QUANTITE_DE_VIANDE_PAR_JOUR * traverse;
+		System.out.printf("%n Le commis doit préparer %d kg de viandes, et %d végétaux.", viande, vegetaux);
 	}
 
 }

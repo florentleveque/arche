@@ -19,6 +19,7 @@ public class Main {
 			continuer = Interaction.relanceSaisie();
 		}
 		Interaction.afficheContenuArche(arche);
+		Interaction.affichePreparation(arche);
 
 	}
 
