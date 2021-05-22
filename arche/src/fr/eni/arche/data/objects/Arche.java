@@ -1,5 +1,8 @@
 package fr.eni.arche.data.objects;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import fr.eni.arche.data.interfaces.Carnivor;
 import fr.eni.arche.data.interfaces.Vegetarien;
 
@@ -17,40 +20,39 @@ import fr.eni.arche.data.interfaces.Vegetarien;
  *
  */
 public class Arche {
-	private Annimal[] annimaux;
+	private ArrayList<Annimal> annimaux;
 
 	public Arche() {
 		super();
-		annimaux = new Annimal[8];
+		annimaux = new ArrayList<Annimal>();
 	}
-	public Annimal[] getAnnimaux() {
+	public ArrayList<Annimal> getAnnimaux() {
 		return annimaux;
 	}
 
 	/**
 	 * @param annimal
-	 * Cette méthode ajoute un annimal au tableau annimaux à la classe Arche
+	 * Cette méthode ajoute un animal à la liste annimaux de la classe Arche
 	 */
 	public void ajoutAnnimal(Annimal annimal) {
-		for (int i = 0; i < annimaux.length; i++) {
-			if (annimaux[i] == null) {
-				annimaux[i] = annimal;
-				System.out.println(annimaux[i].getNom() + " a été ajouté à l'arche.");
-				break;
-			}
-		}
+		this.annimaux.add(annimal);
+		System.out.println(annimal.getNom() + " a été ajouté à l'arche.");
+
 	}
 	public int[] trieAnnimaux() {
 		// je parcours le tableaux d'annimaux, et je nomme dans le tableau le nombre de carnivors et de végétariens
 		int[] trie = new int[2];
 		
 		// l'index 0 contiendra le nombre de végétarien, et l'index 1 comprendra le nombre de carnivors.
-		for (Annimal a : annimaux) {
-			if (a instanceof Vegetarien) {
-				trie[0]++;
-			}
-			else if (a instanceof Carnivor) {
-				trie[1]++;
+		Iterator<Annimal> iter = this.annimaux.iterator();
+		while (iter.hasNext()) {
+			if (iter.hasNext()) {
+				if (iter.next() instanceof Vegetarien) {
+					trie[0]++;
+				}
+				else if (iter.next() instanceof Carnivor) {
+					trie[1]++;
+				}
 			}
 		}
 		return trie;

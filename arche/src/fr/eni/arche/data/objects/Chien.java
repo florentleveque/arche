@@ -10,7 +10,6 @@ public class Chien extends Annimal implements Carnivor {
 		super(sexe, nom);
 		// TODO Auto-generated constructor stub
 		nombreInstance++;
-		besoin = nombreInstance * QUANTITE_DE_VIANDE_PAR_JOUR;
 	}
 	public static int getNombreInstance() {
 		return nombreInstance;

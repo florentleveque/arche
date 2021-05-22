@@ -17,8 +17,5 @@ public class Chat extends Annimal implements Carnivor {
 	public static int getNombreInstance() {
 		return nombreInstance;
 	}
-	public static int getBesoin() {
-		return besoin;
-	}
 
 }
