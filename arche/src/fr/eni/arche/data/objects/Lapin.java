@@ -1,7 +1,5 @@
 package fr.eni.arche.data.objects;
 
-import java.util.Calendar;
-
 import fr.eni.arche.data.enumerations.Sexe;
 import fr.eni.arche.data.interfaces.Vegetarien;
 
